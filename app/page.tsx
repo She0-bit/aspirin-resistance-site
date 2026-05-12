@@ -88,26 +88,24 @@ export default function Home() {
             </p>
 
             <div className="mt-12 flex gap-4 flex-wrap">
-
-              <div className="mt-12 flex gap-4 flex-wrap">
-                <a
-                href="#results"
-                className="group bg-[#8BAD65] text-black rounded-full px-7 py-4 font-semibold flex items-center gap-3 hover:bg-[#A8C982] transition-all w-fit"
-                >
-                  Explore Findings
-                  
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
-                  </a>
-
               <a
-                href="/manuscript.pdf"
-                download
-                className="rounded-full border border-white/10 px-7 py-4 hover:bg-white/5 transition"
-              >
-                Download Manuscript
-              </a>
-            </div>
-          </motion.div>
+              href="#results"
+              className="group bg-[#8BAD65] text-black rounded-full px-7 py-4 font-semibold flex items-center gap-3 hover:bg-[#A8C982] transition-all w-fit"
+            >
+              Explore Findings
+
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+            </a>
+
+            <a
+              href="/manuscript.pdf"
+              download
+              className="rounded-full border border-white/10 px-7 py-4 hover:bg-white/5 transition"
+            >
+              Download Manuscript
+            </a>
+
+          </div>
 
           {/* HERO FIGURE */}
           <motion.div
