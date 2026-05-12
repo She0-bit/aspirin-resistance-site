@@ -53,105 +53,115 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center px-6 pt-32 pb-24">
+{/* HERO */}
+<section className="relative min-h-screen flex items-center px-6 pt-32 pb-24">
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,173,101,0.12),transparent_45%)]" />
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,173,101,0.12),transparent_45%)]" />
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-14 items-center relative z-10">
+  <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-14 items-center relative z-10">
 
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
 
-            <div className="inline-flex items-center gap-3 border border-[#8BAD65]/30 bg-[#8BAD65]/10 rounded-full px-5 py-2 mb-8 text-sm tracking-[0.2em] uppercase text-[#DCE8CF]">
-              <Microscope className="w-4 h-4" />
-              Systematic Review & Meta-analysis
-            </div>
+      <div className="inline-flex items-center gap-3 border border-[#8BAD65]/30 bg-[#8BAD65]/10 rounded-full px-5 py-2 mb-8 text-sm tracking-[0.2em] uppercase text-[#DCE8CF]">
+        <Microscope className="w-4 h-4" />
+        Systematic Review & Meta-analysis
+      </div>
 
-            <h1 className="text-[4.5rem] md:text-[7rem] leading-[0.9] font-black tracking-[-0.06em] uppercase">
-              Aspirin
-              <br />
-              Resistance
-              <br />
-              <span className="text-[#8BAD65]">
-                Is Assay-Defined
-              </span>
-            </h1>
+      <h1 className="text-[4.5rem] md:text-[7rem] leading-[0.9] font-black tracking-[-0.06em] uppercase">
+        Aspirin
+        <br />
+        Resistance
+        <br />
+        <span className="text-[#8BAD65]">
+          Is Assay-Defined
+        </span>
+      </h1>
 
-            <p className="mt-10 text-xl leading-relaxed text-[#BFB5A9] max-w-2xl">
-              A conceptual and statistical re-examination of
-              laboratory-defined aspirin resistance in ischemic
-              stroke and TIA.
+      <p className="mt-10 text-xl leading-relaxed text-[#BFB5A9] max-w-2xl">
+        A conceptual and statistical re-examination of
+        laboratory-defined aspirin resistance in ischemic
+        stroke and TIA.
+      </p>
+
+      <div className="mt-12 flex gap-4 flex-wrap">
+
+        <a
+          href="#results"
+          className="group bg-[#8BAD65] text-black rounded-full px-7 py-4 font-semibold flex items-center gap-3 hover:bg-[#A8C982] transition-all w-fit"
+        >
+          Explore Findings
+
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+        </a>
+
+        <a
+          href="/manuscript.pdf"
+          download
+          className="rounded-full border border-white/10 px-7 py-4 hover:bg-white/5 transition"
+        >
+          Download Manuscript
+        </a>
+
+      </div>
+
+    </motion.div>
+
+    {/* HERO FIGURE */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.2 }}
+    >
+
+      <Tilt
+        tiltMaxAngleX={3}
+        tiltMaxAngleY={3}
+        perspective={1500}
+        glareEnable={true}
+        glareMaxOpacity={0.08}
+        scale={1.01}
+      >
+
+        <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.55)]">
+
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.65))] z-10" />
+
+          <Image
+            src={figures.subgroup}
+            alt="Subgroup Analysis"
+            width={1600}
+            height={1200}
+            className="w-full h-auto"
+          />
+
+          <div className="absolute bottom-0 left-0 z-20 p-8">
+
+            <p className="uppercase tracking-[0.25em] text-xs text-[#DDE9D1] mb-4">
+              Central Observation
             </p>
 
-            <div className="mt-12 flex gap-4 flex-wrap">
-              <a
-              href="#results"
-              className="group bg-[#8BAD65] text-black rounded-full px-7 py-4 font-semibold flex items-center gap-3 hover:bg-[#A8C982] transition-all w-fit"
-            >
-              Explore Findings
-
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
-            </a>
-
-            <a
-              href="/manuscript.pdf"
-              download
-              className="rounded-full border border-white/10 px-7 py-4 hover:bg-white/5 transition"
-            >
-              Download Manuscript
-            </a>
+            <h3 className="text-3xl font-black uppercase leading-tight max-w-lg">
+              AR prevalence varies nearly fourfold across assay platforms
+            </h3>
 
           </div>
-
-          {/* HERO FIGURE */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2 }}
-          >
-
-            <Tilt
-              tiltMaxAngleX={3}
-              tiltMaxAngleY={3}
-              perspective={1500}
-              glareEnable={true}
-              glareMaxOpacity={0.08}
-              scale={1.01}
-            >
-              <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.55)]">
-
-                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.65))] z-10" />
-
-                <Image
-                  src={figures.subgroup}
-                  alt="Subgroup Analysis"
-                  width={1600}
-                  height={1200}
-                  className="w-full h-auto"
-                />
-
-                <div className="absolute bottom-0 left-0 z-20 p-8">
-                  <p className="uppercase tracking-[0.25em] text-xs text-[#DDE9D1] mb-4">
-                    Central Observation
-                  </p>
-
-                  <h3 className="text-3xl font-black uppercase leading-tight max-w-lg">
-                    AR prevalence varies nearly fourfold across assay platforms
-                  </h3>
-                </div>
-              </div>
-            </Tilt>
-          </motion.div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-[#8BAD65]">
-          <ChevronDown className="w-8 h-8" />
-        </div>
-      </section>
+      </Tilt>
+
+    </motion.div>
+
+  </div>
+
+  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-[#8BAD65]">
+    <ChevronDown className="w-8 h-8" />
+  </div>
+
+</section>
 
       {/* METRICS */}
       <section className="px-6 pb-24">
