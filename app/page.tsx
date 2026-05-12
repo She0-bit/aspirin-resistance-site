@@ -2,13 +2,16 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Tilt from "react-parallax-tilt";
 import {
   ArrowRight,
-  Microscope,
   Brain,
+  Microscope,
   Activity,
   FlaskConical,
   ChevronDown,
+  FileText,
+  Download,
 } from "lucide-react";
 
 const figures = {
@@ -17,35 +20,34 @@ const figures = {
   loo: "/figures/fig_nejm_C_loo.png",
   prisma: "/figures/fig02_prisma_flow.png",
   sensitivity: "/figures/fig04_sensitivity.png",
+  funnel: "/figures/fig09_funnel_egger.png",
+  pharmacogenetic: "/figures/figSX_pharmacogenetic.png",
 };
 
-export default function AspirinResistanceCompanionPage() {
+export default function Home() {
   return (
-    <main className="bg-[#06080B] text-[#F5F1EA] overflow-hidden selection:bg-[#8BAD65]/40">
+    <main className="bg-[#05070A] text-[#F5F1EA] overflow-hidden selection:bg-[#8BAD65]/30">
+
       <BackgroundTexture />
 
-      {/* NAV */}
-      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-[#06080B]/65 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          <div className="font-black tracking-[0.35em] text-sm text-[#D6E6C0]">
-            STROKE_001
-          </div>
-
-          <div className="hidden md:flex items-center gap-8 text-sm text-[#D8D0C7]">
+      {/* FLOATING NAV */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+        <div className="backdrop-blur-2xl bg-black/30 border border-white/10 rounded-full px-6 py-4 shadow-2xl">
+          <div className="flex items-center gap-8 text-sm uppercase tracking-[0.2em]">
             <a href="#concept" className="hover:text-[#8BAD65] transition">
               Concept
             </a>
-            <a href="#assays" className="hover:text-[#8BAD65] transition">
-              Assays
-            </a>
+
             <a href="#results" className="hover:text-[#8BAD65] transition">
               Results
             </a>
+
             <a href="#methods" className="hover:text-[#8BAD65] transition">
               Methods
             </a>
-            <a href="#future" className="hover:text-[#8BAD65] transition">
-              Future
+
+            <a href="#manuscript" className="hover:text-[#8BAD65] transition">
+              Manuscript
             </a>
           </div>
         </div>
@@ -53,86 +55,105 @@ export default function AspirinResistanceCompanionPage() {
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center px-6 pt-32 pb-24">
+
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,173,101,0.12),transparent_45%)]" />
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-14 items-center relative z-10">
+
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1 }}
           >
+
             <div className="inline-flex items-center gap-3 border border-[#8BAD65]/30 bg-[#8BAD65]/10 rounded-full px-5 py-2 mb-8 text-sm tracking-[0.2em] uppercase text-[#DCE8CF]">
               <Microscope className="w-4 h-4" />
               Systematic Review & Meta-analysis
             </div>
 
-            <h1 className="text-[4.5rem] md:text-[7rem] leading-[0.92] font-black tracking-[-0.05em] uppercase max-w-5xl">
+            <h1 className="text-[4.5rem] md:text-[7rem] leading-[0.9] font-black tracking-[-0.06em] uppercase">
               Aspirin
               <br />
               Resistance
               <br />
-              <span className="text-[#8BAD65]">is assay-defined</span>
+              <span className="text-[#8BAD65]">
+                Is Assay-Defined
+              </span>
             </h1>
 
-            <p className="mt-10 text-xl leading-relaxed text-[#BEB4A7] max-w-2xl font-light">
-              A conceptual and statistical re-examination of laboratory-defined
-              aspirin resistance in ischemic stroke. Different platelet-function
-              assays may not measure the same biological reality.
+            <p className="mt-10 text-xl leading-relaxed text-[#BFB5A9] max-w-2xl">
+              A conceptual and statistical re-examination of
+              laboratory-defined aspirin resistance in ischemic
+              stroke and TIA.
             </p>
 
-            <div className="mt-12 flex flex-wrap gap-4">
-              <button className="group bg-[#8BAD65] text-[#081008] rounded-full px-7 py-4 font-semibold flex items-center gap-3 hover:bg-[#A4C57E] transition-all">
+            <div className="mt-12 flex gap-4 flex-wrap">
+
+              <button className="group bg-[#8BAD65] text-black rounded-full px-7 py-4 font-semibold flex items-center gap-3 hover:bg-[#A8C982] transition-all">
                 Explore Findings
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
               </button>
 
-              <button className="rounded-full border border-white/15 px-7 py-4 text-[#D4CCC2] hover:bg-white/5 transition">
-                Supplementary Material
-              </button>
+              <a
+                href="/manuscript.pdf"
+                download
+                className="rounded-full border border-white/10 px-7 py-4 hover:bg-white/5 transition"
+              >
+                Download Manuscript
+              </a>
             </div>
           </motion.div>
 
-          {/* RIGHT VISUAL */}
+          {/* HERO FIGURE */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1 }}
-            className="relative"
+            transition={{ duration: 1.2 }}
           >
-            <div className="absolute -inset-10 bg-[#8BAD65]/10 blur-[120px] rounded-full" />
 
-            <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden shadow-2xl shadow-black/40">
-              <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.6))] z-10" />
+            <Tilt
+              tiltMaxAngleX={3}
+              tiltMaxAngleY={3}
+              perspective={1500}
+              glareEnable={true}
+              glareMaxOpacity={0.08}
+              scale={1.01}
+            >
+              <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.55)]">
 
-              <Image
-                src={figures.subgroup}
-                alt="Assay subgroup analysis"
-                width={1600}
-                height={1200}
-                className="w-full h-auto opacity-90 mix-blend-screen"
-              />
+                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.65))] z-10" />
 
-              <div className="absolute bottom-0 left-0 p-8 z-20">
-                <p className="text-[#D7E7C7] uppercase tracking-[0.25em] text-xs mb-4">
-                  Core Observation
-                </p>
+                <Image
+                  src={figures.subgroup}
+                  alt="Subgroup Analysis"
+                  width={1600}
+                  height={1200}
+                  className="w-full h-auto"
+                />
 
-                <h3 className="text-3xl font-bold leading-tight max-w-lg">
-                  AR prevalence varies nearly fourfold across assay platforms.
-                </h3>
+                <div className="absolute bottom-0 left-0 z-20 p-8">
+                  <p className="uppercase tracking-[0.25em] text-xs text-[#DDE9D1] mb-4">
+                    Central Observation
+                  </p>
+
+                  <h3 className="text-3xl font-black uppercase leading-tight max-w-lg">
+                    AR prevalence varies nearly fourfold across assay platforms
+                  </h3>
+                </div>
               </div>
-            </div>
+            </Tilt>
           </motion.div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[#8BAD65] animate-bounce">
-          <ChevronDown className="w-7 h-7" />
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-[#8BAD65]">
+          <ChevronDown className="w-8 h-8" />
         </div>
       </section>
 
       {/* METRICS */}
       <section className="px-6 pb-24">
         <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-5">
+
           <MetricCard
             title="Pooled Prevalence"
             value="15.6%"
@@ -142,7 +163,7 @@ export default function AspirinResistanceCompanionPage() {
           <MetricCard
             title="Prediction Interval"
             value="3.8–45.9%"
-            subtitle="Future-study range"
+            subtitle="Expected future-study range"
           />
 
           <MetricCard
@@ -160,63 +181,72 @@ export default function AspirinResistanceCompanionPage() {
       </section>
 
       {/* CONCEPT */}
-      <section id="concept" className="relative px-6 py-28 border-t border-white/10">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-20 items-start">
-          <div className="sticky top-32">
-            <p className="text-[#8BAD65] uppercase tracking-[0.3em] text-sm mb-5">
+      <section
+        id="concept"
+        className="px-6 py-28 border-t border-white/10"
+      >
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-20">
+
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="sticky top-32 h-fit"
+          >
+
+            <p className="uppercase tracking-[0.3em] text-sm text-[#8BAD65] mb-5">
               Conceptual Reframing
             </p>
 
-            <h2 className="text-5xl leading-[1] font-black uppercase mb-8">
+            <h2 className="text-6xl font-black uppercase leading-[0.9] mb-8">
               We may not be measuring a single construct.
             </h2>
 
-            <p className="text-lg text-[#BFB5A9] leading-relaxed">
-              The apparent prevalence of aspirin resistance changes depending on
-              how platelet inhibition is operationalized. Assay class explains a
-              substantial proportion of heterogeneity, challenging the assumption
-              that “aspirin resistance” represents a biologically unified
+            <p className="text-lg leading-relaxed text-[#BFB5A9]">
+              Different platelet-function assays interrogate
+              distinct biological pathways. Apparent aspirin
+              resistance prevalence may partly reflect assay
+              architecture rather than a biologically unified
               phenotype.
             </p>
-          </div>
+          </motion.div>
 
           <div className="space-y-8">
+
             <ConceptCard
               icon={<Brain className="w-6 h-6" />}
               title="Construct Instability"
-              text="A patient may be labeled aspirin-resistant by one platform and aspirin-sensitive by another."
+              text="A patient classified as aspirin-resistant by one assay may be aspirin-sensitive by another."
             />
 
             <ConceptCard
               icon={<Activity className="w-6 h-6" />}
               title="Pathway Specificity"
-              text="AA-specific aggregometry interrogates the COX-1 pathway directly, whereas closure-time platforms capture broader platelet behavior."
+              text="AA-specific aggregometry directly interrogates the COX-1 pathway inhibited by aspirin."
             />
 
             <ConceptCard
               icon={<FlaskConical className="w-6 h-6" />}
-              title="Clinical Translation Problem"
-              text="Without assay standardization, pooled prevalence estimates and escalation strategies may not be biologically comparable."
+              title="Translation Problem"
+              text="Without assay standardization, prevalence estimates may lack direct biological comparability."
             />
           </div>
         </div>
       </section>
 
       {/* ASSAYS */}
-      <section id="assays" className="px-6 py-28 bg-[linear-gradient(to_bottom,#090C10,#0E1115)] border-y border-white/10">
+      <section className="px-6 py-28 bg-[linear-gradient(to_bottom,#090C10,#0F1216)] border-y border-white/10">
+
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-20">
-            <p className="text-[#8BAD65] uppercase tracking-[0.3em] text-sm mb-5">
-              Assay Architecture
-            </p>
 
-            <h2 className="text-6xl font-black uppercase leading-[0.95] mb-8">
-              Different assays.<br />
-              Different biology.
-            </h2>
-          </div>
+          <SectionHeader
+            eyebrow="Assay Architecture"
+            title="Different assays. Different biology."
+          />
 
-          <div className="grid lg:grid-cols-4 gap-6">
+          <div className="grid lg:grid-cols-4 gap-6 mt-20">
+
             <AssayCard
               title="AA Aggregometry"
               prevalence="7.3%"
@@ -234,17 +264,17 @@ export default function AspirinResistanceCompanionPage() {
             />
 
             <AssayCard
-              title="VerifyNow ARU"
+              title="VerifyNow"
               prevalence="18.0%"
-              specificity="Flow / closure-time platform"
-              description="Measures broader platelet reactivity under standardized flow conditions."
-              accent="#D98B2C"
+              specificity="Flow-based platform"
+              description="Measures broader platelet reactivity under standardized conditions."
+              accent="#D88A2B"
             />
 
             <AssayCard
               title="PFA-200"
               prevalence="32.0%"
-              specificity="Collagen / epinephrine closure"
+              specificity="COL/EPI closure"
               description="Highest prevalence estimate with substantial aspirin-independent contribution."
               accent="#D45845"
             />
@@ -253,8 +283,12 @@ export default function AspirinResistanceCompanionPage() {
       </section>
 
       {/* RESULTS */}
-      <section id="results" className="px-6 py-28">
+      <section
+        id="results"
+        className="px-6 py-32"
+      >
         <div className="max-w-7xl mx-auto space-y-32">
+
           <SectionHeader
             eyebrow="Primary Results"
             title="Quantitative findings"
@@ -266,13 +300,16 @@ export default function AspirinResistanceCompanionPage() {
             image={figures.subgroup}
           />
 
+          <IntervalExplainer />
+
           <FeatureFigure
             title="Prediction interval"
-            description="A future stroke/TIA cohort using a different assay in a different setting could plausibly observe prevalence estimates ranging from 3.8% to 45.9%."
+            description="A future study using a different assay in a different setting could plausibly observe prevalence estimates ranging from negligible aspirin resistance to nearly half of patients meeting criteria."
             image={figures.prediction}
           />
 
           <div className="grid lg:grid-cols-2 gap-10">
+
             <MiniFigure
               title="Leave-One-Out Stability"
               image={figures.loo}
@@ -283,33 +320,32 @@ export default function AspirinResistanceCompanionPage() {
               image={figures.sensitivity}
             />
           </div>
+
+          <FeatureFigure
+            title="Publication Bias Assessment"
+            description="Egger’s and trim-and-fill analyses demonstrated no major small-study effects."
+            image={figures.funnel}
+          />
         </div>
       </section>
 
       {/* METHODS */}
-      <section id="methods" className="px-6 py-28 border-t border-white/10 bg-[radial-gradient(circle_at_top,#10151A,transparent_65%)]">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-20 items-start">
-          <div>
-            <p className="text-[#8BAD65] uppercase tracking-[0.3em] text-sm mb-5">
-              Methods & Transparency
-            </p>
+      <section
+        id="methods"
+        className="px-6 py-28 border-t border-white/10 bg-[radial-gradient(circle_at_top,#10151A,transparent_65%)]"
+      >
+        <div className="max-w-7xl mx-auto">
 
-            <h2 className="text-5xl font-black uppercase leading-[0.95] mb-8">
-              Source verification & robustness framework
-            </h2>
+          <SectionHeader
+            eyebrow="Methods"
+            title="Robustness & source verification"
+          />
 
-            <p className="text-lg text-[#BEB4A7] leading-relaxed">
-              Studies were re-reviewed manually to verify aspirin-resistance
-              numerators, denominators, assay definitions, and eligibility.
-              Multiple sensitivity models were pre-specified to test estimate
-              stability.
-            </p>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-14 mt-20">
 
-          <div className="space-y-8">
             <MethodBlock
               title="Strict Platelet-Function Model"
-              text="Restricted to stroke/TIA populations with verified chronic aspirin exposure and platelet-function testing."
+              text="Restricted to stroke/TIA populations with confirmed aspirin exposure and platelet-function testing."
             />
 
             <MethodBlock
@@ -318,83 +354,156 @@ export default function AspirinResistanceCompanionPage() {
             />
 
             <MethodBlock
+              title="Source Verification"
+              text="Primary studies were manually re-reviewed to verify numerators, denominators, and assay eligibility."
+            />
+
+            <MethodBlock
               title="Bias Assessment"
               text="Egger’s and Lin–Chu testing demonstrated no major small-study effects."
             />
           </div>
-        </div>
 
-        <div className="max-w-6xl mx-auto mt-24">
-          <Image
-            src={figures.prisma}
-            alt="PRISMA flow"
-            width={1800}
-            height={1200}
-            className="w-full rounded-[2rem] border border-white/10 shadow-2xl"
-          />
+          {/* METHODS DEEP DIVE */}
+          <div className="mt-20">
+
+            <details className="group border border-white/10 rounded-[2rem] p-8 bg-white/[0.02]">
+
+              <summary className="cursor-pointer text-3xl font-black uppercase flex items-center gap-4">
+                Methods Deep Dive
+              </summary>
+
+              <div className="mt-10 space-y-6 text-[#BFB5A9] leading-relaxed text-lg">
+
+                <p>
+                  Random-effects pooling used logit-transformed
+                  proportions with DerSimonian-Laird τ² estimation.
+                </p>
+
+                <p>
+                  Sensitivity analyses included leave-one-out
+                  diagnostics, assay-specific subgrouping,
+                  denominator verification, and temporal restriction.
+                </p>
+
+                <p>
+                  Meta-regression suggested assay class explained
+                  a substantial proportion of between-study variance.
+                </p>
+              </div>
+            </details>
+          </div>
+
+          <div className="mt-24">
+
+            <Tilt
+              tiltMaxAngleX={2}
+              tiltMaxAngleY={2}
+              perspective={1200}
+            >
+              <Image
+                src={figures.prisma}
+                alt="PRISMA"
+                width={1800}
+                height={1200}
+                className="w-full rounded-[2rem] border border-white/10 shadow-[0_40px_120px_rgba(0,0,0,0.5)]"
+              />
+            </Tilt>
+          </div>
         </div>
       </section>
 
-      {/* FUTURE */}
-      <section id="future" className="px-6 py-32">
+      {/* MANUSCRIPT */}
+      <section
+        id="manuscript"
+        className="px-6 py-32"
+      >
         <div className="max-w-7xl mx-auto">
+
           <SectionHeader
-            eyebrow="Research Agenda"
-            title="Toward clinical translation"
+            eyebrow="Supplementary Material"
+            title="Embedded manuscript viewer"
           />
 
-          <div className="grid lg:grid-cols-4 gap-6 mt-20">
-            <RoadmapCard number="01" title="Assay Standardisation" />
-            <RoadmapCard number="02" title="Prospective Cohorts" />
-            <RoadmapCard number="03" title="IPD Meta-analysis" />
-            <RoadmapCard number="04" title="Pharmacogenetic Trials" />
+          <div className="mt-20 grid lg:grid-cols-[0.35fr_0.65fr] gap-10">
+
+            <div className="space-y-8">
+
+              <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8">
+
+                <div className="w-14 h-14 rounded-2xl bg-[#8BAD65]/15 flex items-center justify-center mb-6 text-[#8BAD65]">
+                  <FileText className="w-6 h-6" />
+                </div>
+
+                <h3 className="text-3xl font-black uppercase mb-6">
+                  Full Manuscript
+                </h3>
+
+                <p className="text-[#BEB4A8] leading-relaxed mb-8">
+                  Extended analyses, supplementary figures,
+                  methodological rationale, and source verification details.
+                </p>
+
+                <a
+                  href="/manuscript.pdf"
+                  download
+                  className="inline-flex items-center gap-3 bg-[#8BAD65] text-black rounded-full px-6 py-4 font-semibold hover:bg-[#A9CA83] transition"
+                >
+                  <Download className="w-4 h-4" />
+                  Download PDF
+                </a>
+              </div>
+
+              {/* DOI STYLE BLOCK */}
+              <div className="border-l-2 border-[#8BAD65] pl-6 py-3 text-sm text-[#BEB5A8]">
+
+                <p className="uppercase tracking-[0.25em] text-[#8BAD65] mb-3">
+                  Citation
+                </p>
+
+                <p className="leading-relaxed">
+                  Alotaibi SA, et al. Aspirin resistance in ischemic stroke:
+                  assay-dependent prevalence variability. Manuscript under review.
+                </p>
+              </div>
+            </div>
+
+            {/* PDF VIEWER */}
+            <div className="rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_40px_120px_rgba(0,0,0,0.45)]">
+
+              <iframe
+                src="/manuscript.pdf"
+                className="w-full h-[900px]"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="px-6 py-20 border-t border-white/10 bg-[#050608]">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
+      <footer className="px-6 py-20 border-t border-white/10 bg-[#040507]">
+
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+
           <div>
+
             <p className="uppercase tracking-[0.25em] text-[#8BAD65] text-sm mb-5">
               Correspondence
             </p>
 
-            <h3 className="text-3xl font-black uppercase mb-6">
+            <h3 className="text-4xl font-black uppercase mb-5">
               Aspirin Resistance in Ischemic Stroke
             </h3>
 
-            <p className="text-[#BFB4A8] leading-relaxed max-w-xl">
-              Supplementary companion website developed for poster presentation
-              and extended methodological transparency.
+            <p className="text-[#BFB4A8] max-w-xl leading-relaxed">
+              Supplementary companion website developed for
+              translational-science presentation and extended
+              methodological transparency.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 text-sm text-[#BEB5A8]">
-            <div>
-              <p className="text-[#8BAD65] uppercase tracking-[0.2em] mb-3">
-                Selected References
-              </p>
-
-              <div className="space-y-2 leading-relaxed">
-                <p>(1) GBD 2019 Stroke Collaborators. Lancet Neurol. 2021.</p>
-                <p>(2) Patrono C, Rocca B. ATVB. 2008.</p>
-                <p>(3) Lordkipanidzé M, et al. Eur Heart J. 2007.</p>
-              </div>
-            </div>
-
-            <div>
-              <p className="text-[#8BAD65] uppercase tracking-[0.2em] mb-3">
-                Technical Notes
-              </p>
-
-              <div className="space-y-2 leading-relaxed">
-                <p>PRISMA 2020</p>
-                <p>Random-effects meta-analysis</p>
-                <p>Prediction intervals</p>
-                <p>Assay subgrouping</p>
-              </div>
-            </div>
+          <div className="text-sm text-[#9E9387] leading-relaxed">
+            PRISMA 2020 · Random-effects meta-analysis · Prediction intervals · Assay subgrouping
           </div>
         </div>
       </footer>
@@ -402,93 +511,35 @@ export default function AspirinResistanceCompanionPage() {
   );
 }
 
+/* ========================= */
+/* COMPONENTS */
+/* ========================= */
+
 function BackgroundTexture() {
   return (
     <>
-      <div className="fixed inset-0 opacity-[0.08] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <motion.div
+        animate={{
+          x: [0, -10, 0],
+          y: [0, 10, 0],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="fixed inset-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"
+      />
 
       <div className="fixed inset-0 pointer-events-none bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
     </>
   );
 }
 
-function MetricCard({ title, value, subtitle }: any) {
-  return (
-    <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8 hover:-translate-y-1 transition-all duration-500">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#8BAD65]/10 to-transparent opacity-0 group-hover:opacity-100 transition" />
-
-      <p className="uppercase tracking-[0.2em] text-xs text-[#B8AEA3] mb-5 relative z-10">
-        {title}
-      </p>
-
-      <div className="text-5xl font-black tracking-tight text-[#F4F0EA] relative z-10">
-        {value}
-      </div>
-
-      <p className="mt-5 text-[#9E9387] relative z-10 leading-relaxed">
-        {subtitle}
-      </p>
-    </div>
-  );
-}
-
-function ConceptCard({ icon, title, text }: any) {
-  return (
-    <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8 hover:border-[#8BAD65]/40 transition-all">
-      <div className="w-14 h-14 rounded-2xl bg-[#8BAD65]/15 text-[#8BAD65] flex items-center justify-center mb-6">
-        {icon}
-      </div>
-
-      <h3 className="text-2xl font-bold mb-5 uppercase tracking-tight">
-        {title}
-      </h3>
-
-      <p className="text-[#BDB3A7] leading-relaxed text-lg">
-        {text}
-      </p>
-    </div>
-  );
-}
-
-function AssayCard({ title, prevalence, specificity, description, accent }: any) {
-  return (
-    <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0D1014] p-8 hover:-translate-y-2 transition-all duration-500">
-      <div
-        className="absolute top-0 left-0 w-full h-1"
-        style={{ background: accent }}
-      />
-
-      <div
-        className="w-4 h-4 rounded-full mb-8"
-        style={{ background: accent }}
-      />
-
-      <h3 className="text-3xl font-black uppercase leading-none mb-8">
-        {title}
-      </h3>
-
-      <div
-        className="text-6xl font-black tracking-tight mb-6"
-        style={{ color: accent }}
-      >
-        {prevalence}
-      </div>
-
-      <p className="uppercase tracking-[0.18em] text-xs mb-5 text-[#A89F94]">
-        {specificity}
-      </p>
-
-      <p className="text-[#C0B7AB] leading-relaxed text-lg">
-        {description}
-      </p>
-    </div>
-  );
-}
-
 function SectionHeader({ eyebrow, title }: any) {
   return (
     <div className="max-w-4xl">
-      <p className="text-[#8BAD65] uppercase tracking-[0.3em] text-sm mb-5">
+      <p className="uppercase tracking-[0.3em] text-sm text-[#8BAD65] mb-5">
         {eyebrow}
       </p>
 
@@ -499,9 +550,114 @@ function SectionHeader({ eyebrow, title }: any) {
   );
 }
 
+function MetricCard({ title, value, subtitle }: any) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8"
+    >
+      <p className="uppercase tracking-[0.2em] text-xs text-[#B8AEA3] mb-5">
+        {title}
+      </p>
+
+      <div className="text-5xl font-black">
+        {value}
+      </div>
+
+      <p className="mt-5 text-[#9E9387]">
+        {subtitle}
+      </p>
+    </motion.div>
+  );
+}
+
+function ConceptCard({ icon, title, text }: any) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8"
+    >
+      <div className="w-14 h-14 rounded-2xl bg-[#8BAD65]/15 text-[#8BAD65] flex items-center justify-center mb-6">
+        {icon}
+      </div>
+
+      <h3 className="text-3xl font-black uppercase mb-5">
+        {title}
+      </h3>
+
+      <p className="text-[#BDB3A7] leading-relaxed text-lg">
+        {text}
+      </p>
+    </motion.div>
+  );
+}
+
+function AssayCard({ title, prevalence, specificity, description, accent }: any) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.9 }}
+    >
+      <Tilt
+        tiltMaxAngleX={3}
+        tiltMaxAngleY={3}
+        perspective={1400}
+        scale={1.02}
+      >
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0D1014] p-8 min-h-[420px]">
+
+          <div
+            className="absolute top-0 left-0 w-full h-1"
+            style={{ background: accent }}
+          />
+
+          <div
+            className="w-4 h-4 rounded-full mb-8"
+            style={{ background: accent }}
+          />
+
+          <h3 className="text-3xl font-black uppercase leading-none mb-8">
+            {title}
+          </h3>
+
+          <div
+            className="text-6xl font-black mb-6"
+            style={{ color: accent }}
+          >
+            {prevalence}
+          </div>
+
+          <p className="uppercase tracking-[0.2em] text-xs text-[#AAA093] mb-5">
+            {specificity}
+          </p>
+
+          <p className="text-[#C1B7AB] leading-relaxed text-lg">
+            {description}
+          </p>
+        </div>
+      </Tilt>
+    </motion.div>
+  );
+}
+
 function FeatureFigure({ title, description, image }: any) {
   return (
-    <div className="grid lg:grid-cols-[0.42fr_0.58fr] gap-12 items-center">
+    <motion.div
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1 }}
+      className="grid lg:grid-cols-[0.42fr_0.58fr] gap-12 items-center"
+    >
+
       <div>
         <h3 className="text-5xl font-black uppercase leading-[0.95] mb-8">
           {title}
@@ -512,22 +668,37 @@ function FeatureFigure({ title, description, image }: any) {
         </p>
       </div>
 
-      <div className="rounded-[2rem] overflow-hidden border border-white/10 bg-[#0A0D11] shadow-[0_40px_120px_rgba(0,0,0,0.45)]">
-        <Image
-          src={image}
-          alt={title}
-          width={1800}
-          height={1200}
-          className="w-full h-auto"
-        />
-      </div>
-    </div>
+      <Tilt
+        tiltMaxAngleX={2}
+        tiltMaxAngleY={2}
+        perspective={1400}
+        glareEnable={true}
+        glareMaxOpacity={0.08}
+      >
+        <div className="rounded-[2rem] overflow-hidden border border-white/10 bg-[#0B0E12] shadow-[0_40px_120px_rgba(0,0,0,0.45)]">
+
+          <Image
+            src={image}
+            alt={title}
+            width={1800}
+            height={1200}
+            className="w-full h-auto"
+          />
+        </div>
+      </Tilt>
+    </motion.div>
   );
 }
 
 function MiniFigure({ title, image }: any) {
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-[#0B0E12] overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="rounded-[2rem] border border-white/10 bg-[#0B0E12] overflow-hidden"
+    >
       <div className="p-8 border-b border-white/10">
         <h3 className="text-2xl font-black uppercase">
           {title}
@@ -541,40 +712,78 @@ function MiniFigure({ title, image }: any) {
         height={1000}
         className="w-full h-auto"
       />
-    </div>
+    </motion.div>
+  );
+}
+
+function IntervalExplainer() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.9 }}
+      className="bg-[#0D1014] border border-white/10 rounded-[2rem] p-10"
+    >
+
+      <h3 className="text-4xl font-black uppercase mb-10">
+        Confidence vs Prediction Interval
+      </h3>
+
+      <div className="space-y-10">
+
+        <div>
+          <div className="flex justify-between mb-3">
+            <span>Confidence Interval</span>
+            <span>11.3–20.9%</span>
+          </div>
+
+          <div className="h-4 bg-white/10 rounded-full overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "28%" }}
+              transition={{ duration: 1.5 }}
+              className="h-full bg-[#8BAD65]"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div className="flex justify-between mb-3">
+            <span>Prediction Interval</span>
+            <span>3.8–45.9%</span>
+          </div>
+
+          <div className="h-4 bg-white/10 rounded-full overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "72%" }}
+              transition={{ duration: 1.8 }}
+              className="h-full bg-[#754B27]"
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
 function MethodBlock({ title, text }: any) {
   return (
-    <div className="border-l-2 border-[#8BAD65] pl-8 py-2">
-      <h3 className="text-2xl font-black uppercase mb-4">
+    <motion.div
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="border-l-2 border-[#8BAD65] pl-8 py-2"
+    >
+      <h3 className="text-3xl font-black uppercase mb-4">
         {title}
       </h3>
 
       <p className="text-[#BFB5A9] text-lg leading-relaxed">
         {text}
       </p>
-    </div>
-  );
-}
-
-function RoadmapCard({ number, title }: any) {
-  return (
-    <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0D1014] p-10 min-h-[260px] group hover:border-[#8BAD65]/50 transition-all">
-      <div className="absolute -right-10 -top-10 text-[9rem] font-black text-white/[0.03] group-hover:text-[#8BAD65]/10 transition-all">
-        {number}
-      </div>
-
-      <div className="relative z-10">
-        <p className="text-[#8BAD65] uppercase tracking-[0.3em] text-sm mb-10">
-          {number}
-        </p>
-
-        <h3 className="text-4xl font-black uppercase leading-[0.95]">
-          {title}
-        </h3>
-      </div>
-    </div>
+    </motion.div>
   );
 }
